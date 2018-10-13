@@ -62,14 +62,20 @@
         <a href="/">پلاتو</a> می باشد. این سایت تابع قوانین جمهوری اسلامی ایران می باشد.
     </div>
 </div>
-
-<div class="scroll-to-top">
+<div class="scroll-to-top hidden-md hidden-lg" style="left:46%;">
     <i class="icon-arrow-up"></i>
 </div>
-<div class="callme">
-<a class="myButton" id="myButton" style="box-shadow: rgb(176, 181, 29) 0px 0px 0px 0px; background-color: rgb(68, 199, 103); border-radius: 42px; border: 5px solid rgb(24, 171, 41); display: inline-block; cursor: pointer; color: rgb(255, 255, 255); font-family: Arial; font-size: 21px; font-weight: bold; padding: 22px 9px; text-decoration: none; text-shadow: rgb(47, 102, 39) -1px 3px 0px;" href="tel:09357081196">تماس باما</a>
+<div class="scroll-to-top hidden-xs" >
+    <i class="icon-arrow-up"></i>
 </div>
+<div class="callme hidden-md hidden-lg">
+    <!--
+    <a class="myButton" id="myButton" style="box-shadow: rgb(176, 181, 29) 0px 0px 0px 0px; background-color: rgb(68, 199, 103);  border-top-right-radius: 42px; border: 5px solid rgb(24, 171, 41); display: inline-block; cursor: pointer; color: rgb(255, 255, 255); font-family: Arial; font-size: 21px; font-weight: bold; padding: 22px 9px; text-decoration: none; text-shadow: rgb(47, 102, 39) -1px 3px 0px;" href="tel:09127926826">تماس باما</a>
+    -->
+
+    <a class="button" href="tel:09336498995"></a>
 
 
+</div>
 <!-- END INNER FOOTER -->
 <!-- END FOOTER -->
