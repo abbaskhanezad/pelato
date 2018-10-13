@@ -343,3 +343,23 @@ Route::post('getway', function (){
 
 Route::get('abbas','WelcomeController@abbas');
 Route::get('kh','WelcomeController@kh');
+
+
+//users Routes
+Route::group(['namespace'=>'User','prefix'=>'users','middleware'=>'user'],function(){
+
+    /*Center And Detail Routes*/
+    Route::get('/index','DashboardController@index')->name('user.panel.dashboard');
+    Route::get('/centers/list','CentersController@index')->name('user.panel.centers.list');
+    Route::get('/center/{center_id}','CentersController@detailCenter')->name('user.panel.detailCenter');
+
+    /*wallet Routes*/
+    Route::get('/walletLogs','WalletLogsController@index')->name('user.panel.walletLog.index');
+    Route::get('/wallet','WalletsController@index')->name('user.panel.wallet.sum');
+
+    /*point Routes*/
+    Route::get('/points/calculator','PointsController@calculator')->name('user.panel.points.calculator');
+    Route::get('/points','PointsController@index')->name('user.panel.points.index');
+    Route::get('/points/change','PointsController@changeToWallet')->name('user.panel.points.changeToWallet');
+
+});
