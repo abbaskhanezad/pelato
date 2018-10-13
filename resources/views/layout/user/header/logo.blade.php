@@ -1,0 +1,1 @@
+                              <!-- BEGIN LOGO -->                              <div class="logo">                                  <a href="\" title="پلاتو" rel="home" class="custom-header"><img src="http://pelato.ir/wp-content/uploads/2017/06/cropped-peleto0.png" alt="لوگو پلاتو"></a>                              </div>                              <!-- END LOGO -->

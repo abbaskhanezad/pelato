@@ -1,0 +1,22 @@
+.star-rating .star-rating1 .star-rating2 .star-rating3 {
+    line-height:32px;
+    font-size: 50px;
+    font-weight:bold;
+}
+
+.star-rating .star-ratin1 .star-rating2 .star-ratin3 .fa-star{color: yellow;}
+.check {
+    color:gold;
+    font-size: 30px;
+    font-weight:bold;
+}
+.fa-star-o{
+    font-size: 30px;
+    font-weight:bold;
+    color: black;
+}
+
+.etc-row2 {
+    padding: 10px;
+    background-color: #e1ddf3;
+}

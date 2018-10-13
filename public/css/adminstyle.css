@@ -1,0 +1,59 @@
+
+
+
+
+
+.red{color: red;}
+
+.timing_sellable{
+  background-color:  #BFCAD1;
+}
+.timing_unsellable1{
+  background-color:  #e46977;
+}
+.timing_reserved{
+  background-color: #26C281;
+}
+.timing_select_to_reserve{
+  background-color: #3598DC;
+}
+.box{cursor: pointer;}
+
+.selected_row{
+  background-color: #3598DC !important;
+}
+
+.reserved_hover{
+  background-color: #EF4836;
+
+}
+.dropdown-menu{min-width:200px;}
+#order_list td,th{text-align: center;}
+
+
+.carousel-control{opacity: 0.4;}
+
+.carousel .item img{margin: 0 auto;}
+
+.week_title{background-color: #DDDDDD;border-radius: 5px;padding:13px;}
+
+.terms_of_service li{margin-bottom: 15px;line-height: 25px;}
+
+
+
+
+.timing_unsellable{
+  background-color:#e46977;
+}
+.timing_sellable_user{
+  background-color:  #26C281;
+}
+.timing_reserved_user{
+  background-color: #BFCAD1;
+}
+.timing_select_to_reserve_user{
+  background-color: #F3C200;
+}
+
+
+

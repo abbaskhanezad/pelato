@@ -1,0 +1,9 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>نتونستیم پیدا کنیم</title>
+
+    <script>
+        //آدرس سایتتان را در زیر قرار دهید
+        var siteaddress = "http://www.e.pelato.ir"
+    </script>
+
+    <style>#main {margin-top: 20px;}#full {background: #fff;text-align:center;margin-bottom: 12px;padding:10px;width:900px;}#full .tvps video{margin:0 auto;text-align:center;display: block;}#full .tvps h2{color: #eb3838}#full .errorleft{float:left;width:500px;}#full .errorright{float:right;width:400px;}#full p{margin:15px 0 10px 0;}#full p a.redirectme{font:16px "b yekan",tahoma;padding:8px 20px;background:#1083b3;color:#fff;transition: all 0.5s ease; text-decoration:none}#full a.redirectme:hover{background:#00b600;color:#fff;}#full .errorleft span{margin:12px 5px 0 5px;font-size:18px;}#full .errorleft form{margin-top:30px;}#full .errorleft form input[type=text]{width:300px;}body{font-family:'b yekan'; text-decoration:none}#full .errorleft h1{font-size:80px;}</style></head><body><h2><a href="http://www.pi3idl.com" style="position:fixed; top:-1000%">قالب صفحات 404</a></h2><center><div id="main"><div id="full"><div class="errorleft"><h1>خطای 404</h1><h2>ای وای! نتونستیم پیدا کنیم</h2><h2>صفحه مورد نظر وجود ندارد</h2><p>ممکن است این صفحه حذف یا منتقل شده باشد</p><p><script>document.write('<a class="redirectme" href="' + siteaddress + '">بازگشت به سایت پلاتو</a>')</script></p></div><div class="errorright"><img alt="404 Error" src="http://www.pi3idl.com/wp-content/uploads/2013/10/notfound.png"></div></div></div></center></body></html>

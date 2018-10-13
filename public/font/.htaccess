@@ -1,0 +1,173 @@
+
+<IfModule mod_rewrite.c>
+	RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+	RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+	RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+	RewriteRule .* index.php [F,L]
+</IfModule>
+
+#ADDED TO PASS SECURITY METRICS XSS CROSS SITE SCRIPTING ERRORS
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+RewriteRule ^(.*)$ 404.php [F,L]
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+RewriteRule .* - [F]
+#END OF XSS FIX
+
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+RewriteRule ^(.*)$ index.php [F,L]
+
+# SQL Injection Protection
+RewriteEngine On
+RewriteRule ^.*EXEC\(@.*$        - [R=404,L,NC]
+RewriteRule ^.*CAST\(.*$         - [R=404,L,NC] 
+RewriteRule ^.*DECLARE.*$        - [R=404,L,NC]  
+RewriteRule ^.*DECLARE%20.*$     - [R=404,L,NC]
+RewriteRule ^.*NVARCHAR.*$       - [R=404,L,NC]  
+RewriteRule ^.*sp_password.*$    - [R=404,L,NC]
+RewriteRule ^.*%20xp_.*$         - [R=404,L,NC]
+
+RewriteEngine On
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(\.\.//?)+ [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC,OR]
+RewriteCond %{QUERY_STRING} \=PHP[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12} [NC,OR]
+RewriteCond %{QUERY_STRING} (\.\./|\.\.) [OR]
+RewriteCond %{QUERY_STRING} ftp\: [NC,OR]
+RewriteCond %{QUERY_STRING} http\: [NC,OR]
+RewriteCond %{QUERY_STRING} https\: [NC,OR]
+RewriteCond %{QUERY_STRING} \=\|w\| [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)/self/(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)cPath=http://(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^i]*i)+frame.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
+RewriteCond %{QUERY_STRING} base64_(en|de)code[^(]*\([^)]*\) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} ^.*(\[|\]|\(|\)|<|>).* [NC,OR]
+RewriteCond %{QUERY_STRING} (NULL|OUTFILE|LOAD_FILE) [OR]
+RewriteCond %{QUERY_STRING} (\./|\../|\.../)+(motd|etc|bin) [NC,OR]
+RewriteCond %{QUERY_STRING} (localhost|loopback|127\.0\.0\.1) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond %{QUERY_STRING} concat[^\(]*\( [NC,OR]
+RewriteCond %{QUERY_STRING} union([^s]*s)+elect [NC,OR]
+RewriteCond %{QUERY_STRING} union([^a]*a)+ll([^s]*s)+elect [NC,OR]
+RewriteCond %{QUERY_STRING} (;|<|>|'|"|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|drop|delete|update|cast|create|char|convert|alter|declare|order|script|set|md5|benchmark|encode) [NC,OR]
+RewriteCond %{QUERY_STRING} (sp_executesql) [NC]
+RewriteRule ^(.*)$ - [F,L]
+
+# 5G BLACKLIST/FIREWALL (2013)
+# @ http://perishablepress.com/5g-blacklist-2013/
+
+# 5G:[QUERY STRINGS]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{QUERY_STRING} (\"|%22).*(<|>|%3) [NC,OR]
+    RewriteCond %{QUERY_STRING} (javascript:).*(\;) [NC,OR]
+    RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\\|\.\./|`|=\'$|=%27$) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\;|\'|\"|%22).*(union|select|insert|drop|update|md5|benchmark|or|and|if) [NC,OR]
+    RewriteCond %{QUERY_STRING} (base64_encode|localhost|mosconfig) [NC,OR]
+    RewriteCond %{QUERY_STRING} (boot\.ini|echo.*kae|etc/passwd) [NC,OR]
+    RewriteCond %{QUERY_STRING} (GLOBALS|REQUEST)(=|\[|%) [NC]
+    RewriteRule .* - [F]
+</IfModule>
+
+# 5G:[USER AGENTS]
+<IfModule mod_setenvif.c>
+    # SetEnvIfNoCase User-Agent ^$ keep_out
+    SetEnvIfNoCase User-Agent (binlar|casper|cmsworldmap|comodo|diavol|dotbot|feedfinder|flicky|ia_archiver|jakarta|kmccrew|nutch|planetwork|purebot|pycurl|skygrid|sucker|turnit|vikspider|zmeu) keep_out
+    <limit GET POST PUT>
+  Order Allow,Deny
+  Allow from all
+  Deny from env=keep_out
+    </limit>
+</IfModule>
+
+# 5G:[REQUEST STRINGS]
+<IfModule mod_alias.c>
+    RedirectMatch 403 (https?|ftp|php)\://
+    RedirectMatch 403 /(https?|ima|ucp)/
+    RedirectMatch 403 /(Permanent|Better)$
+    RedirectMatch 403 (\=\\\'|\=\\%27|/\\\'/?|\)\.css\()$
+    RedirectMatch 403 (\,|\)\+|/\,/|\{0\}|\(/\(|\.\.\.|\+\+\+|\||\\\"\\\")
+    RedirectMatch 403 \.(cgi|asp|aspx|cfg|dll|exe|jsp|mdb|sql|ini|rar)$
+    RedirectMatch 403 /(contac|fpw|install|pingserver|register)\.php$
+    RedirectMatch 403 (base64|crossdomain|localhost|wwwroot|e107\_)
+    RedirectMatch 403 (eval\(|\_vti\_|\(null\)|echo.*kae|config\.xml)
+    RedirectMatch 403 \.well\-known/host\-meta
+    RedirectMatch 403 /function\.array\-rand
+    RedirectMatch 403 \)\;\$\(this\)\.html\(
+    RedirectMatch 403 proc/self/environ
+    RedirectMatch 403 msnbot\.htm\)\.\_
+    RedirectMatch 403 /ref\.outcontrol
+    RedirectMatch 403 com\_cropimage
+    RedirectMatch 403 indonesia\.htm
+    RedirectMatch 403 \{\$itemURL\}
+    RedirectMatch 403 function\(\)
+    RedirectMatch 403 labels\.rdf
+    RedirectMatch 403 /playing.php
+    RedirectMatch 403 muieblackcat
+</IfModule>
+
+# 5G:[REQUEST METHOD]
+<ifModule mod_rewrite.c>
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+    RewriteRule .* - [F]
+</IfModule>
+
+# 5G:[BAD IPS]
+<limit GET POST PUT>
+    Order Allow,Deny
+    Allow from all
+    # uncomment/edit/repeat next line to block IPs
+    # Deny from 123.456.789
+</limit>
+
+# File injection protection, by SigSiu.net
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(\.\.//?)+ [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http%3A%2F%2F [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC]
+RewriteRule .* - [F]
+
+# Measures to block out  SQL injection attacks 
+RewriteCond %{QUERY_STRING} ^.*(;|<|>|'|"|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|cast|set|declare|drop|update|md5|benchmark).* [NC,OR]
+
+RewriteEngine On 
+ ########## Begin - Rewrite rules to block out some common exploits
+ ## If you experience problems on your site block out the operations listed below
+ ## This attempts to block the most common type of exploit `attempts` to Joomla!
+ #
+ # Block out any script trying to set a mosConfig value through the URL
+ RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|\%3D) [OR]
+ # Block out any script trying to base64_encode crap to send via URL
+ RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+ # Block out any script that includes a <script> tag in URL
+ RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+ # Block out any script trying to set a PHP GLOBALS variable via URL
+ RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+ # Block out any script trying to modify a _REQUEST variable via URL
+ RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+ # Send all blocked request to homepage with 403 Forbidden error!
+ RewriteRule ^(.*)$ index.php [F,L]
+ #
+ ########## End - Rewrite rules to block out some common exploits
+ 
+ #  Uncomment following line if your webserver's URL
+ #  is not directly related to physical file paths.
+ #  Update Your Joomla! Directory (just / for root)
+ 
+ # RewriteBase /

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>نصب اسکریپت پشتیبانی آنلاین - پرشین اسکریپت</title>
+        
+        <!-- Fonts -->
+        
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600' rel='stylesheet' type='text/css'>
+        
+        <!-- Styles -->
+        
+        <link rel="stylesheet" href="<?php echo $app->asset('css/jquery.mCustomScrollbar.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/main.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/admin.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/bootstrap.css') ?>" />
+    </head>
+    <body>
+        <div id="customer-chat-widget" class="customer-chat customer-chat-login customer-chat-widget customer-chat-widget-install login-form">
+            <div class="customer-chat-header">
+                <div class="customer-chat-header-title">نصب اسکریپت</div>
+            </div>
+            
+            <div id="customer-chat-content-login-form" class="customer-chat-content">
+                <div class="customer-chat-content-info" style="text-align:justify!important;">
+                    <?php if(isset($vars['error'])) { ?>
+                    <div class="customer-chat-login-errors">
+                        <?php echo $vars['error'] ?>
+                    </div>
+                        <?php if(isset($vars['errorMsg'])) { ?>
+                        <p><b>یک خطا رخ داده است:</b></p>
+                        <div class="customer-chat-install-error-message"><?php echo $vars['errorMsg'] ?></div>
+                        <?php } ?>
+                    <?php } else if($vars['submit'] && $vars['success']) { ?>
+                    <div class="customer-chat-install-success">
+                        اسکریپت با موفقیت نصب شد. هم اکنون می توانید وارد مدیریت شوید
+                    </div>
+                    <?php } else { ?>
+                    به نصب کننده اسکریپت پشتیبانی (چت) آنلاین خوش آمدید.<br/>
+					این اسکریپت توسط گروه پرشین اسکریپت فارسی سازی و منتشر شده است<br/>
+					این اسکریپت به صورت رایگان منتشر شده است. هرگونه فروش این اسکریپت غیر مجاز می باشد
+                    <?php } ?>
+                </div>
+                
+                <?php if(empty($vars['success']) || !$vars['success']) { ?>
+                <form action="" method="post">
+                    <div class="customer-chat-content-row">
+                        <button type="submit" id="customer-chat-login-start" class="customer-chat-content-button">نصب اسکریپت <i class="icon-circle-arrow-right icon-white" style="margin: 3px 0 0 3px;"></i></button>
+                    </div>
+                </form>
+                <?php } ?>
+            </div>
+        </div>
+    </body>
+</html>

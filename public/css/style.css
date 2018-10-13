@@ -1,0 +1,111 @@
+.caption,.alert,
+form,input,button,label,
+p,a,table,
+h1,h2,h3,h4,h5,h6,
+div,span{font-family: 'IRANSans-web', sans-serif ;line-height: 1.7em;}
+
+.nav ul li a{
+  font-family: 'IRANSans-web' !important;
+}
+
+.carousel-inner img{
+  width: 100%;
+}
+
+.red{color: red;}
+
+.timing_sellable{
+  background-color:  #BFCAD1;
+}
+.timing_unsellable1{
+  background-color:  #e46977;
+}
+.timing_reserved{
+  background-color: #26C281;
+}
+.timing_select_to_reserve{
+  background-color: #3598DC;
+}
+.box{cursor: pointer;}
+
+.selected_row{
+  background-color: #3598DC !important;
+}
+
+.reserved_hover{
+  background-color: #EF4836;
+
+}
+.dropdown-menu{min-width:200px;}
+#order_list td,th{text-align: center;}
+
+
+.carousel-control{opacity: 0.4;}
+
+.carousel .item img{margin: 0 auto;}
+
+.week_title{background-color: #DDDDDD;border-radius: 5px;padding:13px;}
+
+.terms_of_service li{margin-bottom: 15px;line-height: 25px;}
+
+
+
+
+.timing_unsellable{
+  background-color:#e46977;
+}
+.timing_sellable_user{
+  background-color:  #26C281;
+}
+.timing_reserved_user{
+  background-color: #BFCAD1;
+}
+.timing_select_to_reserve_user{
+  background-color: #F3C200;
+}
+
+.logo {
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.cbp-overview {
+  position: absolute;
+  padding: 5px 20px;
+  background-color: #18e0f1;
+  color: #545252;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+@media (max-width: 991px)
+{
+  .page-header .page-header-top {
+    height: 75px !important;
+  }
+}
+
+.page-header .page-header-top .top-menu {
+  margin: 20px 0 0 !important;
+}
+
+@media (max-width: 480px)
+{
+  .top-menu {
+  //  display: none !important;
+  }
+  .img-circle{
+    display: none !important;
+  }
+  .page-header .page-header-top .top-menu
+  {
+    clear: none !important;;
+  }
+}
+
+.touch {
+position: relative; 
+overflow-x: scroll;
+ overflow-y: hidden; 
+ -webkit-overflow-scrolling: touch; 
+}

@@ -1,0 +1,42 @@
+<Limit GET POST PUT>
+    Allow From All
+</Limit>
+
+RewriteEngine On
+RewriteRule    ^$    public/    [L]
+RewriteRule    (.*) public/$1    [L]
+
+
+#RewriteEngine on
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ public/ [NC,L,QSA]
+#RewriteBase /
+#RewriteRule    ^$    public/    [L]
+#RewriteRule    (.*) public/$1    [L]
+
+
+#<IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteRule ^(.*)$ public/$1 [L]
+#</IfModule>
+
+
+
+#Options -MultiViews
+#   RewriteEngine On
+
+#   RewriteCond %{REQUEST_FILENAME} !-d
+#   RewriteCond %{REQUEST_FILENAME} !-f
+#   RewriteRule ^ public/index.php [L]
+
+
+
+#Options +FollowSymLinks
+#RewriteEngine On
+
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^ public/index.php [L]
+
