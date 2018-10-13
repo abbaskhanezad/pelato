@@ -272,6 +272,7 @@ Route::group(['middleware' => ['auth','centerowner']], function () {
 
     Route::post('register/centerorder', 'OrderController@centercustomReserve')->name('centercustom.reserve');
 
+    Route::get('/user/mostReserve/list','UserController@userWithMostReserveList')->name('user.mostReserveList');
 
 });
 

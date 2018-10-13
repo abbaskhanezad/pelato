@@ -252,4 +252,11 @@ class UserController extends Controller
         return view('user.center_owners.identity_info', compact('user'));
     }
 
+    public function userWithMostReserveList()
+    {
+        $users = User::withCount('order_room')->orderBy('order_room_count','desc')->paginate(20);
+        return view('user.userMostOrder', compact('users'));
+
+    }
+
 }

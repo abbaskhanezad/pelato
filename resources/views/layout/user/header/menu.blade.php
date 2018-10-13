@@ -72,12 +72,25 @@
                             <span class="arrow"></span>
                         </a>
                     </li>
+                    <li class="">
+                        <a href="/user/mostReserve/list"> مشاهده کاربران بر اساس رزرو
+                            <span class="arrow"></span>
+                        </a>
+                    </li>
 
                     <li class="">
                         <a href="/admin/discounts"> مدیریت کدهای تخفیف
                             <span class="arrow"></span>
                         </a>
                     </li>
+
+                    <li class="">
+                        <a href="/sendmessage"> ارسال پیامک
+                            <span class="arrow"></span>
+                        </a>
+                    </li>
+
+
                 </ul>
             </li>
         @elseif(isset(Auth::user()->type)&&Auth::user()->type == 2)
@@ -93,7 +106,12 @@
             </li>
 
             <li class="">
-                <a href="/orders_detail"> مشاهده سفارشات ثبت شده
+                <a href="/orders_detail"> مشاهده سفارشات ثبت شده از سایت پلاتو
+                    <span class="arrow"></span>
+                </a>
+            </li>
+            <li class="">
+                <a href="/myorders_detail"> مشاهده سفارشات مرکز
                     <span class="arrow"></span>
                 </a>
             </li>
