@@ -24,6 +24,7 @@ class OrderController extends Controller
     function set(Request $request)
     {
         $order_list_stringify = $request->order_list;
+      //  dd($order_list_stringify);
         //Get Timing List and package it to show and validate
         $ids = [];
         foreach (json_decode($order_list_stringify) as $order_list) {
@@ -817,7 +818,7 @@ return view('order.set', compact('timing_list_to_show', 'full_price', 'order_lis
                 .'  و رمز عبور شما:'
                 . $password
                 .'می باشد';
-           // $this->sendSMS($request->mobile, $message);
+            // $this->sendSMS($request->mobile, $message);
             $user = User::create([
                 'username' => $request->mobile,
                 'mobile' => $request->mobile,
@@ -851,7 +852,7 @@ return view('order.set', compact('timing_list_to_show', 'full_price', 'order_lis
             [
                 "user_id" => $user->id,
                 "center_id"=> \auth()->user()->reservable_center->id,
-               // "whole_price" => $whole_price,
+                // "whole_price" => $whole_price,
                 "whole_price" => $request->price/1000,
                 "paid" => 1,
                 "status_payment_id" => $request->status_payment
@@ -859,7 +860,7 @@ return view('order.set', compact('timing_list_to_show', 'full_price', 'order_lis
         );
         $order_room->save();
         $inserted_id = $order_room->id;
-       // dd($room_timing);
+        // dd($room_timing);
         $order_room->room_timing()->attach($room_timing);
 
         //My Codes
@@ -999,11 +1000,11 @@ return view('order.set', compact('timing_list_to_show', 'full_price', 'order_lis
                 "pelato.ir";
         }
 
-       // $this->sendSMS($order->user->mobile, $message2);
+        // $this->sendSMS($order->user->mobile, $message2);
 
         $message.=' '."pelato.ir";
 
-       // $this->sendSMS($roomG->reservable_center->user->mobile,$message1 . $message);
+        // $this->sendSMS($roomG->reservable_center->user->mobile,$message1 . $message);
 
         return redirect()->back()->with(['message' => 'عملیات با موفقیت انجام شد']);
 

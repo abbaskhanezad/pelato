@@ -49,6 +49,12 @@
     .reserved_hover {
         background-color: red;
     }
+        .timing_reserved{
+            background-color: red;
+        }
+    .timing_sellable{
+        background-color: green;
+    }
 </style>
 
 <script>
@@ -98,7 +104,7 @@ room_list.push({id:{{ $room->id}}, price:{{ $room->price_per_hour}}});
             @endforeach
     var edit_enabled = {{ $edit_enabled}};
 </script>
-<script src="/js/timing.js" type="text/javascript"></script>
+<script src="/js/reservetiming.js" type="text/javascript"></script>
 <script src="/js/timing_range_slider.js" type="text/javascript"></script>
 
 
@@ -130,7 +136,7 @@ room_list.push({id:{{ $room->id}}, price:{{ $room->price_per_hour}}});
                 <div class="col-xs-12 hidden-lg hidden-md navbar navbar-static-top text-center"
                      style="position: fixed;  background-color: #00a65a;  border-radius: 10px;">
 
-                    <form method="post" id="room_timing_result">
+                    <form method="post" action="/abbas" id="room_timing_result">
                         {{csrf_field() }}
                         <div class="row">
                             <input type="hidden" name="result_to_save" value="">
@@ -139,8 +145,7 @@ room_list.push({id:{{ $room->id}}, price:{{ $room->price_per_hour}}});
                             <div class="text-center">
                                 <button onclick="sbt()" class="btn btn-success pull-right"
                                         style="border-radius: 10px; height: 60px; width: 100%;font-size:20px;font-weight:bold;">
-                                    ثبت نهایی زمانبندی
-                                </button>
+رزرو برای مشتری                                </button>
 
                             </div>
                         </div>
@@ -149,8 +154,8 @@ room_list.push({id:{{ $room->id}}, price:{{ $room->price_per_hour}}});
                 </div>
             </div>
 
-
-            <div class="row">
+<div style="padding-top: 20px;"></div>
+            <div class="row" style="display: none;">
                 <div class="col-md-12" style="padding: 20px;">
                     <!-- BEGIN EXAMPLE TABLE PORTLET-->
                     <div class="portlet light ">
@@ -173,7 +178,7 @@ room_list.push({id:{{ $room->id}}, price:{{ $room->price_per_hour}}});
                                     <div class="row">
                                         <div class="form-group col-md-5">
                                             <label class="col-md-2 control-label">تنظیم</label>
-                                            <div class="col-md-10">
+                                            <div class="col-md-10" >
                                                 <label class="radio-inline"><input type="radio" value="1" checked="true"
                                                                                    name="control_what">زمانهای قابل رزرو</label>
                                                 <label class="radio-inline"><input type="radio" value="2"
@@ -248,7 +253,7 @@ room_list.push({id:{{ $room->id}}, price:{{ $room->price_per_hour}}});
                                                 <div class="caption font-dark">
                                                     <i class="icon-settings font-dark"></i>
                                                 </div>
-                                                <div class="actions">
+                                                <div class="actions" style="display: none;">
                                                     <span>قیمت</span>
                                                     <a class="btn btn-default btn-sm" title="قیمت پایه اتاق">
                                                         <i class="fa fa-asterisk"></i> {{ $room->price_per_hour }} </a>

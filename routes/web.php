@@ -252,9 +252,21 @@ Route::group(['middleware' => ['auth','centerowner']], function () {
   
     Route::post('centerowner/setdaytime','CenterOwnerController@setdaytime');
     Route::get('centerowner/setdaytime','CenterOwnerController@setdaytime');
-    
 
-	Route::get('centerowner/discounts','CenterOwnerController@get_discount_form');
+
+    Route::get('centerowner/ownerselectday','CenterOwnerController@selectreserve');
+
+    Route::post('centerowner/reserve/setdaytime','CenterOwnerController@reservesetdaytime');
+    Route::get('centerowner/reserve/setdaytime','CenterOwnerController@reservesetdaytime');
+
+    Route::post('/abbas','CenterOwnerController@abbas');
+    Route::get('/abbas','CenterOwnerController@abbas');
+
+
+    Route::post('reserve/owner', 'CenterOwnerController@reservecenter');
+
+
+    Route::get('centerowner/discounts','CenterOwnerController@get_discount_form');
     Route::post('centerowner/discounts','CenterOwnerController@discounts');
     Route::delete('centerowner/discounts/{id}','CenterOwnerController@del_discounts');
 
@@ -266,6 +278,9 @@ Route::group(['middleware' => ['auth','centerowner']], function () {
 
     Route::get('centerowner/orders_detail','CenterOwnerController@specific_orders');
     Route::get('centerowner/orders/{order}', 'CenterOwnerController@archive_detail');
+
+    Route::get('centerowner/myorders_detail','CenterOwnerController@myspecific_orders');
+
 
     Route::get('orders_detail','OrderController@specific_orders');
     Route::get('myorders_detail','OrderController@myspecific_orders');
@@ -341,8 +356,8 @@ Route::post('getway', function (){
     }
 })->name('test.getway');
 
-Route::get('abbas','WelcomeController@abbas');
-Route::get('kh','WelcomeController@kh');
+//Route::get('abbas','WelcomeController@abbas');
+//Route::get('kh','WelcomeController@kh');
 
 
 //users Routes

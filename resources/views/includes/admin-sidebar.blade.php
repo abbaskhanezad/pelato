@@ -88,6 +88,13 @@
 
                 </a>
             </li>
+            <li>
+                <a href="/centerowner/ownerselectday">
+                    <i class="fa fa-clock-o"></i>
+                    <span>  رزرو برای مشتری </span>
+
+                </a>
+            </li>
 			   <li >
                 <a href="/centerowner/discounts">
                     <i class="fa fa-money"></i>
