@@ -32,13 +32,13 @@
 
 
         </div>
-<!--
-        <form action="#" method="get" class="sidebar-form">
-            <div class="form-group" style="margin-bottom: 0px;">
-                <input type="text" id="sidebar-nav-doc-search" class="form-control" placeholder="جستجو">
-            </div>
-        </form>
--->
+        <!--
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="form-group" style="margin-bottom: 0px;">
+                        <input type="text" id="sidebar-nav-doc-search" class="form-control" placeholder="جستجو">
+                    </div>
+                </form>
+        -->
         <ul class="sidebar-menu" id="sidebar-nav-doc" data-widget="tree" style="direction:rtl;">
             <li class="header" style="font-widget:bold;color:green;font-size:16px;">منوی انتخاب</li>
 
@@ -83,23 +83,31 @@
             </li>
             <li>
                 <a href="/centerowner/orders_detail">
-                    <i class="fa fa-clock-o"></i>
-                    <span>  مشاهده سفارشات ثبت شده </span>
+                    <i class="fa fa-align-center"></i>
+                    <span>سفارشات سایت پلاتو</span>
+
+                </a>
+            </li>
+            <li>
+                <a href="/centerowner/myorders_detail">
+                    <i class="fa fa-align-justify"></i>
+                    <span>سفارشات مرکز </span>
+                    <small class="label pull-left bg-green">مشتریان مرکز</small>
 
                 </a>
             </li>
             <li>
                 <a href="/centerowner/ownerselectday">
-                    <i class="fa fa-clock-o"></i>
+                    <i class="fa fa-credit-card"></i>
                     <span>  رزرو برای مشتری </span>
 
                 </a>
             </li>
-			   <li >
+            <li >
                 <a href="/centerowner/discounts">
                     <i class="fa fa-money"></i>
                     <span> کدهای تخفیف</span>
-                   
+
                 </a>
             </li>
 
