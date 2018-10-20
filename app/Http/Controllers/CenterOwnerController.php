@@ -919,6 +919,23 @@ Session::set('reservefromowner','yes');
     }
 
 
+    public function deletereserve($id)
+    {
+        $orders =  CenterorderRoom::findOrFail($id)->room_timing()->get();
+        //dd($orders);
+        foreach($orders as $orderDone)
+        {
+            $orderDone->update([
+                "selled" => false
+            ]);
+        }
+        $orders =  CenterorderRoom::findOrFail($id)->room_timing()->detach();
+        // $orders =  CenterorderRoom::findOrFail($id)->get();
+        //  $orders[0]->d();
+        flash_message('حذف با موفقیت انجام شد','success');
+        return redirect()->back();
+    }
+
 
     function archive_detail(OrderRoom $order)
     {

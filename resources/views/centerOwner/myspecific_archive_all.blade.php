@@ -83,66 +83,73 @@
                         </div>
                         <div class="portlet-body">
 
-                            <p>سابقه رزرومرکز شما از سایت پلاتو:</p>
+                            <p>سابقه رزرومرکز شما برای مشتریان مرکز:</p>
                             <div class="col-md-12" style="overflow-x: scroll">
                                 <div class="col-xs-12 hidden-lg hidden-md">
 
 
-                                    <span class="badge badge-warning">برای دیدن باقی اطلاعات، اسروا نمایید</span>
+                                    <span class="badge badge-warning"></span>
 
 
                                 </div>
-                                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="order_list">
-                                    <thead>
-                                    <tr>
-                                        <th> شناسه رزرو </th>
-                                        <th> کاربر </th>
-                                        <th> جزئیات رزرو </th>
-                                        <th> مبلغ پرداختی </th>
-                                        <th> تاریخ رزرو </th>
-                                        <th> اسم مرکز </th>
-                                        <th> نحوه پرداخت </th>
-                                        <th> حذف سفارش </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($orders as $c => $o)
+                                @if(count($orders)==0)
+                                    <div class="alert alert-warning" role="alert">
+                                        رزروی از طرف مرکز ثبت نشده است
+                                    </div>
+                                @else
+                                    <table class="table  table-bordered table-hover table-checkable order-column hidden-lg hidden-md" id="order_list" style="font-size:7px;font-weight:bold;">
+                                        <thead>
                                         <tr>
-                                            @if(\App\ReservableCenter::find(\App\Room::find($o['room_id'])->reservable_center_id)->id==$center->id)
-
-
-
-
-
-
-                                                <td> PLT-{{ $o['id'] }} </td>
-                                                <td> {{ \App\User::find($o['user_id'])->name }} <br/> {{\App\User::find($o['user_id'])->mobile}} </td>
-                                                <td> <a href="orders/{{$o['id']}}">مشاهده</a> </td>
-                                                <td> {{ $o['whole_price'] * 1000 }}تومان  </td>
-                                                <td>{{\Morilog\Jalali\jDate::forge($o['created_at'])->format("H:i")}}  {{ jalali_date($o['created_at']) }}    </td>
-                                                <td>{{ \App\ReservableCenter::find(\App\Room::find($o['room_id'])->reservable_center_id)->name }} - {{\App\Room::find($o['room_id'])->name}}</td>
-
-
-                                                <td>
-                                                    @if($o['status_payment_id']==1)
-                                                        <span>آنلاین</span>
-                                                    @elseif($o['status_payment_id']==2)
-                                                        <span>کارت به کارت</span>
-                                                    @elseif($o['status_payment_id']==3)
-                                                        <span>حضوری</span>
-                                                    @endif
-                                                </td>
-                                            @endif
+                                            <th> کاربر </th>
+                                            <th> مبلغ پرداختی </th>
+                                            <th> تاریخ رزرو </th>
+                                            <th> اسم مرکز </th>
+                                            <th> نحوه پرداخت </th>
+                                            <th> عملیات  </th>
                                         </tr>
-                                    @endforeach
-                                    {{csrf_field()}}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+
+                                        @foreach($orders as $c => $o)
+                                            <tr>
+                                                @if(\App\ReservableCenter::find(\App\Room::find($o['room_id'])->reservable_center_id)->id==$center->id)
+
+
+
+
+
+
+                                                    <td> {{ \App\User::find($o['user_id'])->name }} <br/> {{\App\User::find($o['user_id'])->mobile}} </td>
+                                                    <td> {{ $o['whole_price'] * 1000 }}تومان  </td>
+                                                    <td>{{\Morilog\Jalali\jDate::forge($o['created_at'])->format("H:i")}}  {{ jalali_date($o['created_at']) }}    </td>
+                                                    <td> {{\App\Room::find($o['room_id'])->name}}</td>
+
+
+                                                    <td>
+                                                        @if($o['status_payment_id']==1)
+                                                            <span>آنلاین</span>
+                                                        @elseif($o['status_payment_id']==2)
+                                                            <span>کارت به کارت</span>
+                                                        @elseif($o['status_payment_id']==3)
+                                                            <span>حضوری</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="/centerowner/{{$o['id']}}/delete">حذف سفارش</a>
+
+                                                    </td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
+                                        {{csrf_field()}}
+                                        </tbody>
+                                    </table>
+                                @endif
 
                                 <div class="col-xs-12 hidden-lg hidden-md">
 
 
-                                    <span class="badge badge-warning">برای دیدن باقی اطلاعات، اسروا نمایید</span>
+                                    <span class="badge badge-warning"></span>
 
 
                                 </div>

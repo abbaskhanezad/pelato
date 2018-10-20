@@ -265,6 +265,7 @@ Route::group(['middleware' => ['auth','centerowner']], function () {
 
     Route::post('reserve/owner', 'CenterOwnerController@reservecenter');
 
+    Route::get('centerowner/{id}/delete','CenterOwnerController@deletereserve');
 
     Route::get('centerowner/discounts','CenterOwnerController@get_discount_form');
     Route::post('centerowner/discounts','CenterOwnerController@discounts');
