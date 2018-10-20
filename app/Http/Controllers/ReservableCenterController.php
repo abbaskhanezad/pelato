@@ -40,6 +40,7 @@ class ReservableCenterController extends Controller
       return view('reservable_center.index',compact('reservable_center','reservable_center_whole','edit','user','center_type','center_attribute'));
     }
     function add(Request $request){
+
       try{
         $reservable_center = new ReservableCenter(
           [
@@ -144,7 +145,7 @@ class ReservableCenterController extends Controller
             flash_message("عکس با موفقیت آپلود شد",'success');
           }else {
             // sending back with error message.
-            flash_message("آپلود عکس با مششکل مواجه شد",'danger');
+            flash_message("آپلود عکس با مشکل مواجه شد",'danger');
           }
         }
 
@@ -157,6 +158,7 @@ class ReservableCenterController extends Controller
             "description" => $request->description,
             "google_map_lat" => $request->google_map_lat,
             "google_map_lon" => $request->google_map_lon,
+              "commission"=>$request->commission,
           ]
         );
 

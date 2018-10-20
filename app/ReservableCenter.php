@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReservableCenter extends Model
 {
-	protected $fillable = ['center_type_id','user_id','name', 'slug','address', 'phone', 'meta', 'description','google_map_lat','google_map_lon','verified','active', 'is_best'];
+	protected $fillable = ['center_type_id','user_id','name', 'slug','address', 'phone', 'meta', 'description','google_map_lat','google_map_lon','verified','active', 'is_best','commission'];
 
     protected $casts = [
         'meta' => 'array'

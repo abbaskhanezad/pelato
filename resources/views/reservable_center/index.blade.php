@@ -218,6 +218,13 @@
                                 </div>
                             </div>
                             <div class="form-group form-md-line-input">
+                                <label class="col-md-2 control-label" for="name">درصدکمیسیون</label>
+                                <div class="col-md-4">
+                                    <input type="number" name="commission" id="commission" required="true" class="form-control" placeholder="" value="{{$reservable_center->commission}}">
+                                    <div class="form-control-focus"> </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-md-line-input">
                                 <label class="col-md-2 control-label" for="address">آدرس</label>
                                 <div class="col-md-10">
                                     <input type="text" name="address" id="address" required="true" class="form-control" placeholder="" value="{{$reservable_center->address}}">

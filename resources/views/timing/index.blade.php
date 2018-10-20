@@ -69,7 +69,7 @@
                             <th>  مجموع فروش با تخفیف سایت پلاتو  </th>
 
                             <th>مبلغ پرداختی به مرکزدار </th>
-
+                            <th> کمیسیون سایت پلاتو</th>
                             @if($user_type==3||$user_type==4)
                                 <th> وضعیت تسویه</th>
                             @endif
@@ -375,7 +375,7 @@
                                                                   foreach ($cart as $ct){
                                                                  $camount+=$ct->whole_price;
                                                                  }
-                                                               $amount=(0.9*($oamount+$odamount+$camount)-0.1*($hamount));
+                                                               $amount=(((100-$center->commission)/100)*($oamount+$odamount+$camount)-($center->commission/100)*($hamount));
                                     @endphp
                                     @if($checkout>0)
                                         <span style="color:lightskyblue">{{"تسویه شده"}}</span>
@@ -405,7 +405,7 @@
 
 
 
-
+                                <td>{{$center->commission}}{{'%'}}</td>
 
 
 
