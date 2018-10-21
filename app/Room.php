@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    const ROOM=1;
-    const CENTER=2;
+    const ROOM=2;
+    const CENTER=1;
 
   protected $fillable = ['reservable_center_id','name','price_per_hour','size','sandali','floor_type','wall_type'];
 

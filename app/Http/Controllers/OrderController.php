@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Week;
 use Illuminate\Http\Request;
 use App\StatusPayment;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,9 @@ use App\User;
 use Illuminate\Support\Facades\Session;
 use App\Discounts;
 use App\CenterorderRoom;
+
+
+
 
 
 class OrderController extends Controller
@@ -700,7 +704,7 @@ return view('order.set', compact('timing_list_to_show', 'full_price', 'order_lis
             //Make Current Day working on
             if ($tl->day != $active_day) {
                 $active_day = $tl->day;
-                $timing_list_to_show[$active_room][$active_day][] = ["start_hour" => $tl->start_hour, "end_hour" => ($tl->start_hour + 1)];
+                $timing_list_to_show[$active_room][$active_day][] = ["week_id" => $tl->week_id,"day" => $tl->day,"start_hour" => $tl->start_hour, "end_hour" => ($tl->start_hour + 1)];
                 $room_mapper[$active_room]["count"]++;
             } else {
                 if (isset($timing_list_to_show[$active_room][$active_day])) {
@@ -750,6 +754,15 @@ return view('order.set', compact('timing_list_to_show', 'full_price', 'order_lis
                 $message .= $day_mapper[$day_key] . " ";
                 foreach ($day as $hour) {
                     $message .= $hour["start_hour"] . '-' . $hour["end_hour"] . " ";
+                    $mytime=$timing_list_to_show[$room_key][$day_key];
+                    $date=Week::find($mytime[0]["week_id"]);
+                    $t=date('Y-m-d',strtotime($date->start_date. ' + '.$mytime[0]["day"].' days'));
+                    $jdf=new \App\Libraries\Jdf();
+                    $array =  explode('-', $t);
+                   // dd($array);
+                   $finaldate=$jdf->gregorian_to_jalali($array[0],$array[1],$array[2],'-');
+
+                   $message.=" مورخ".$finaldate. "\n";
                 }
 
             }
