@@ -344,8 +344,9 @@ Route::post('getway', function (){
 Route::get('abbas','WelcomeController@abbas');
 Route::get('kh','WelcomeController@kh');
 
+//user panel routes
 
-//users Routes
+
 Route::group(['namespace'=>'User','prefix'=>'users','middleware'=>'user'],function(){
 
     /*Center And Detail Routes*/
@@ -353,7 +354,7 @@ Route::group(['namespace'=>'User','prefix'=>'users','middleware'=>'user'],functi
     Route::get('/centers/list','CentersController@index')->name('user.panel.centers.list');
     Route::get('/center/{center_id}','CentersController@detailCenter')->name('user.panel.detailCenter');
 
-    /*wallet Routes*/
+   /*wallet Routes*/
     Route::get('/walletLogs','WalletLogsController@index')->name('user.panel.walletLog.index');
     Route::get('/wallet','WalletsController@index')->name('user.panel.wallet.sum');
 
@@ -362,4 +363,16 @@ Route::group(['namespace'=>'User','prefix'=>'users','middleware'=>'user'],functi
     Route::get('/points','PointsController@index')->name('user.panel.points.index');
     Route::get('/points/change','PointsController@changeToWallet')->name('user.panel.points.changeToWallet');
 
+    /*child Routes*/
+    Route::get('/child','ChildController@index')->name('user.panel.child.index');
+
+
+    /*reserve Routes*/
+    Route::get('/reserve/{center_id}','ReservesController@index')->name('user.panel.reserve.index');
+    Route::post('/reserve/getTimingRoom/{center_id}','ReservesController@getTimingRoom')->name('user.panel.reserve.getTimingRoom');
+    Route::get('/reserve/check/AllowReserve','ReservesController@checkAllowReserve')->name('user.panel.reserve.checkAllowReserve');
+    Route::get('/reserve/Reserving/list','ReservesController@showReservingList')->name('user.panel.reserve.showReservingList');
+
+
 });
+
