@@ -327,7 +327,7 @@
                         <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> همه
                             <div class="cbp-filter-counter"></div>
                         </div>
-                        /
+
                         @foreach($center_type as $ct)
                             <div data-filter=".ct-{{$ct->id}}" class="cbp-filter-item"> {{$ct->name}}
                                 <div class="cbp-filter-counter"></div>
