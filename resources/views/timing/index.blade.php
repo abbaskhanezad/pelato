@@ -69,8 +69,9 @@
                             <th>  مجموع فروش با تخفیف سایت پلاتو  </th>
 
                             <th>مبلغ پرداختی به مرکزدار </th>
-                            <th> کمیسیون سایت پلاتو</th>
                             @if($user_type==3||$user_type==4)
+                            <th> کمیسیون سایت پلاتو</th>
+
                                 <th> وضعیت تسویه</th>
                             @endif
 
@@ -403,13 +404,13 @@
 
                                 </td>
 
-
+                                @if($user_type==3||$user_type==4)
 
                                 <td>{{$center->commission}}{{'%'}}</td>
 
 
 
-                                @if($user_type==3||$user_type==4)
+
                                     <td>
                                         @php
                                             $checkout=Checkout::where([['week_id',$data->id],['center_id',$center->id],['checkouted',1]])->count();
