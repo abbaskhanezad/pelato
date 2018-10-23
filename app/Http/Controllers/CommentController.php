@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use Illuminate\Http\Request;
+use App\Point;
+use App\PointItem;
 
 use App\Http\Requests;
 use DB;
@@ -27,12 +29,49 @@ class CommentController extends Controller
 		{
 			if($value==0)
 			{
-			    return 'ok';
+
+
+                $user_id=Auth::user()->id;
+                $point=Point::where([
+                    ['point_user_id', '=', $user_id],
+                    ['point_item_id', '=', '1'],
+                ])->first();
+                $newpoint=PointItem::find('1')->point_item_value;
+
+                if($point){
+
+                    $point_val=$point->point_count;
+                    $point->update(['point_count'=>$point_val-$newpoint]);
+                }else{
+
+                }
+                return 'ok';
 
 			}
 			else
 			{
-			    return 'no';
+
+                $user_id=Auth::user()->id;
+                $point=Point::where([
+                    ['point_user_id', '=', $user_id],
+                    ['point_item_id', '=', '1'],
+                ])->first();
+                $newpoint=PointItem::find('1')->point_item_value;
+
+              if($point){
+
+                    $point_val=$point->point_count;
+                    $point->update(['point_count'=>$point_val+$newpoint]);
+                }else{
+                    $pnt=new Point();
+                    $pnt->point_user_id=$user_id;
+                    $pnt->point_item_id=1;
+                    $pnt->point_count=$newpoint;
+                    $pnt->save();
+                }
+
+
+                return 'no';
 
 			}
 		}

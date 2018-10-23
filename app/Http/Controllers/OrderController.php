@@ -18,6 +18,8 @@ use App\User;
 use Illuminate\Support\Facades\Session;
 use App\Discounts;
 use App\CenterorderRoom;
+use App\Setting;
+use App\Point;
 
 
 
@@ -75,6 +77,47 @@ class OrderController extends Controller
             }
         }
         $day_mapper = ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"];
+$parent=Auth::user()->parent;
+        $reservepoint=Setting::where('setting_key','reservePoint')->first();
+
+        //dd($reservepoint->setting_value);
+         $newpoint=($reservepoint->setting_value*$full_price)/5;
+        //dd($newpoint);
+        $point=Point::where([
+            ['point_user_id', '=', $parent->id],
+            ['point_item_id', '=', '2'],
+        ])->first();
+
+        $userpoint=Point::where([
+            ['point_user_id', '=', Auth::user()->id],
+            ['point_item_id', '=', '2'],
+        ])->first();
+        if($userpoint){
+
+            $point_val=$userpoint->point_count;
+            $userpoint->update(['point_count'=>$point_val+$newpoint]);
+        }else{
+            $pnt=new Point();
+            $pnt->point_user_id=Auth::user()->id;
+            $pnt->point_item_id=2;
+            $pnt->point_count=$newpoint;
+            $pnt->save();
+        }
+
+
+        if($point){
+
+            $point_val=$point->point_count;
+            $point->update(['point_count'=>$point_val+ceil($newpoint/2)]);
+        }else{
+            $pnt=new Point();
+            $pnt->point_user_id=$parent->id;
+            $pnt->point_item_id=2;
+            $pnt->point_count=ceil($newpoint/2);
+            $pnt->save();
+        }
+
+
 
     if (\auth()->user()->type == 4 || \auth()->user()->type == 3)
         {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Starrating;
 use App\OrderRoom;
+use App\Point;
+use App\PointItem;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,9 +43,26 @@ class StarController extends Controller
                 $Starrating->tajhizat = $request->tajhizat;
                 $Starrating->khadamat = $request->khadamat;
                 $Starrating->ip = $_SERVER["REMOTE_ADDR"];
+                $user_id=Auth::user()->id;
+                $point=Point::where([
+                    ['point_user_id', '=', $user_id],
+                    ['point_item_id', '=', '3'],
+                ])->first();
+                $newpoint=PointItem::find('3')->point_item_value;
+                if($point){
+
+                    $point_val=$point->point_count;
+                    $point->update(['point_count'=>$point_val+$newpoint]);
+                }else{
+                    $pnt=new Point();
+                    $pnt->point_user_id=$user_id;
+                    $pnt->point_item_id=3;
+                    $pnt->point_count=$newpoint;
+                    $pnt->save();
+                }
+
                 $Starrating->save();
-                //session()->put('msg', 'امتیاز شما با موفقیت ثبت شد');
-                //session()->put('type', 'success');
+
                 flash_message("امتیاز با موفقیت ثبت شد.","success");
                 //dd(session('type'));
                 return redirect()->back();
